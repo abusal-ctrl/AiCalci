@@ -25,14 +25,23 @@ def calculate_endpoint():
 
 @api_bp.route("/ai-solve", methods=["POST"])
 def ai_solve_endpoint():
+
     data = request.get_json() or {}
+
     question = data.get("question", "").strip()
+
     if not question:
         return jsonify({"error": "No question provided"}), 400
+
     try:
+
         result = solve_with_ai(question)
+
         return jsonify({"success": True, **result})
+
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return jsonify({"success": False, "error": str(e)}), 500
 
 

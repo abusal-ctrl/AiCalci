@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AiCalci — AI MathLab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="logo">🧮</span>
+      <div>
+        <h1>AiCalci</h1>
+        <p class="subtitle">Scientific Calculator · AI Solver · Converter</p>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="calculator">🧮 Calculator</button>
+    <button class="tab" data-tab="ai">🤖 AI Math Solver</button>
+    <button class="tab" data-tab="converter">🔄 Converter</button>
+    <button class="tab" data-tab="history">🕓 History</button>
+  </nav>
+
+  <main>
+    <!-- ================= CALCULATOR ================= -->
+    <section class="panel tab-content active" id="tab-calculator">
+      <h2>Scientific Calculator</h2>
+      <input id="calc-input" type="text"
+             placeholder="e.g. 2+3*4  or  sqrt(144)  or  sin(30)" />
+      <div class="btn-row">
+        <button id="calc-submit">Calculate</button>
+        <button class="ghost" id="calc-clear">Clear</button>
+      </div>
+
+      <!-- Quick keypad -->
+      <div class="keypad">
+        <button data-ins="7">7</button><button data-ins="8">8</button>
+        <button data-ins="9">9</button><button data-ins="/">÷</button>
+        <button data-ins="4">4</button><button data-ins="5">5</button>
+        <button data-ins="6">6</button><button data-ins="*">×</button>
+        <button data-ins="1">1</button><button data-ins="2">2</button>
+        <button data-ins="3">3</button><button data-ins="-">−</button>
+        <button data-ins="0">0</button><button data-ins=".">.</button>
+        <button data-ins="(">(</button><button data-ins=")">)</button>
+        <button data-ins="+">+</button><button data-ins="**">^</button>
+        <button data-ins="sqrt(">√</button><button data-ins="pi">π</button>
+        <button data-ins="E">E</button><button data-ins="!">n!</button>
+      </div>
+
+      <div id="calc-output" class="output"></div>
+    </section>
+
+    <!-- ================= AI SOLVER ================= -->
+    <section class="panel tab-content" id="tab-ai">
+      <h2>AI Math Solver</h2>
+      <p class="hint">Try: “Solve 2x + 10 = 30”, “Find the derivative of x^4 + 3x^2”, “What is 25% of 840”</p>
+      <textarea id="ai-input" rows="3"
+        placeholder="Ask a math question in plain English..."></textarea>
+      <button id="ai-submit">Solve</button>
+      <div id="ai-output" class="output"></div>
+    </section>
+
+    <!-- ================= CONVERTER ================= -->
+    <section class="panel tab-content" id="tab-converter">
+      <h2>Unit & Currency Converter</h2>
+
+      <div class="conv-row">
+        <select id="conv-category">
+          <option value="length">Length</option>
+          <option value="mass">Mass</option>
+          <option value="time">Time</option>
+          <option value="temperature">Temperature</option>
+          <option value="area">Area</option>
+          <option value="volume">Volume</option>
+          <option value="speed">Speed</option>
+          <option value="currency">Currency</option>
+        </select>
+      </div>
+
+      <div class="conv-row">
+        <input id="conv-value" type="number" value="1" />
+        <select id="conv-from"></select>
+        <span class="arrow">→</span>
+        <select id="conv-to"></select>
+        <button id="conv-submit">Convert</button>
+      </div>
+
+      <div id="conv-output" class="output"></div>
+    </section>
+
+    <!-- ================= HISTORY ================= -->
+    <section class="panel tab-content" id="tab-history">
+      <h2>History</h2>
+      <ul id="history-list"></ul>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/calculator.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/ai-solver.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/converter.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/history.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
